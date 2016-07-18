@@ -17,6 +17,12 @@ module.exports = {
             // instead of upgraderController we could also use:
             // if (creep.transfer(creep.room.controller, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
 
+            // if too close to existing energy source, move
+            var source = creep.pos.findClosestByPath(FIND_SOURCES);
+            if (creep.harvest(source)) {
+                creep.moveTo(creep.room.controller);
+            }
+
             // try to upgrade the controller
             if (creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
                 // if not in range, move towards the controller
