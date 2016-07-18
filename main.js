@@ -115,7 +115,7 @@ module.exports.loop = function () {
          */
         else {
             // else try to spawn a builder
-            name = Game.spawns.GloverHome.createCustomCreep(energy, 'builder');
+            name = Game.spawns.GloverHome.createCustomCreep(energy, 'upgrader');
         }
 
         // print name to console if spawning was a success
