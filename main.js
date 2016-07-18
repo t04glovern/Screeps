@@ -4,7 +4,7 @@ var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
 var roleRepairer = require('role.repairer');
-//var roleWallRepairer = require('role.wallRepairer');
+var roleWallRepairer = require('role.wallRepairer');
 
 var profiler = require('screeps-profiler');
 
@@ -42,12 +42,10 @@ module.exports.loop = function () {
             else if (creep.memory.role == 'repairer') {
                 roleRepairer.run(creep);
             }
-            /*
-             // if creep is wallRepairer, call wallRepairer script
-             else if (creep.memory.role == 'wallRepairer') {
-             roleWallRepairer.run(creep);
+            // if creep is wallRepairer, call wallRepairer script
+            else if (creep.memory.role == 'wallRepairer') {
+                roleWallRepairer.run(creep);
              }
-             */
         }
 
         var towers = Game.rooms.E32N46.find(FIND_STRUCTURES, {
@@ -65,7 +63,7 @@ module.exports.loop = function () {
         var minimumNumberOfUpgraders = 2;
         var minimumNumberOfBuilders = 1;
         var minimumNumberOfRepairers = 1;
-        //var minimumNumberOfWallRepairers = 1;
+        var minimumNumberOfWallRepairers = 1;
 
         // count the number of creeps alive for each role
         // _.sum will count the number of properties in Game.creeps filtered by the
@@ -74,7 +72,7 @@ module.exports.loop = function () {
         var numberOfUpgraders = _.sum(Game.creeps, (c) => c.memory.role == 'upgrader');
         var numberOfBuilders = _.sum(Game.creeps, (c) => c.memory.role == 'builder');
         var numberOfRepairers = _.sum(Game.creeps, (c) => c.memory.role == 'repairer');
-        //var numberOfWallRepairers = _.sum(Game.creeps, (c) => c.memory.role == 'wallRepairer');
+        var numberOfWallRepairers = _.sum(Game.creeps, (c) => c.memory.role == 'wallRepairer');
 
         var energy = Game.spawns.GloverHome.room.energyCapacityAvailable;
         var name = undefined;
@@ -106,13 +104,11 @@ module.exports.loop = function () {
             // try to spawn one
             name = Game.spawns.GloverHome.createCustomCreep(energy, 'builder');
         }
-        /*
-         // if not enough wallRepairers
-         else if (numberOfWallRepairers < minimumNumberOfWallRepairers) {
-         // try to spawn one
-         name = Game.spawns.GloverHome.createCustomCreep(energy, 'wallRepairer');
+        // if not enough wallRepairers
+        else if (numberOfWallRepairers < minimumNumberOfWallRepairers) {
+            // try to spawn one
+            name = Game.spawns.GloverHome.createCustomCreep(energy, 'wallRepairer');
          }
-         */
         else {
             // else try to spawn a builder
             name = Game.spawns.GloverHome.createCustomCreep(energy, 'builder');
