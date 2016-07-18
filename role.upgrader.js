@@ -19,7 +19,9 @@ module.exports = {
 
             // if too close to existing energy source, move
             var source = creep.pos.findClosestByPath(FIND_SOURCES);
-            if (creep.harvest(source) == 0) {
+            var range = creep.pos.getRangeTo(source);
+            console.log(creep.name + " is " + range + " steps away from energy source");
+            if (range <= 1) {
                 creep.moveTo(creep.room.controller);
             }
 
