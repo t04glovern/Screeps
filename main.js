@@ -61,8 +61,8 @@ module.exports.loop = function () {
         }
 
         // setup some minimum numbers for different roles
-        var minimumNumberOfHarvesters = 8;
-        var minimumNumberOfUpgraders = 4;
+        var minimumNumberOfHarvesters = 4;
+        var minimumNumberOfUpgraders = 2;
         var minimumNumberOfBuilders = 1;
         var minimumNumberOfRepairers = 1;
         //var minimumNumberOfWallRepairers = 1;
@@ -115,7 +115,7 @@ module.exports.loop = function () {
          */
         else {
             // else try to spawn a builder
-            name = Game.spawns.GloverHome.createCustomCreep(energy, 'upgrader');
+            name = Game.spawns.GloverHome.createCustomCreep(energy, 'builder');
         }
 
         // print name to console if spawning was a success
