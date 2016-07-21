@@ -16,7 +16,7 @@ module.exports = {
 
         // if creep is supposed to repair something
         if (creep.memory.working == true) {
-            // find all walls in the room
+            // find all walls and ramparts in the room
             var walls = creep.room.find(FIND_STRUCTURES, {
                 filter: (s) => s.structureType == STRUCTURE_WALL ||
                     s.structureType == STRUCTURE_RAMPART
@@ -47,7 +47,7 @@ module.exports = {
                 }
             }
 
-            // if we find a wall that has to be repaired
+            // if we find a wall or rampart that has to be repaired
             if (target != undefined) {
                 // try to repair it, if not in range
                 if (creep.repair(target) == ERR_NOT_IN_RANGE) {
