@@ -18,7 +18,8 @@ module.exports = {
         if (creep.memory.working == true) {
             // find all walls in the room
             var walls = creep.room.find(FIND_STRUCTURES, {
-                filter: (s) => s.structureType == STRUCTURE_WALL
+                filter: (s) => s.structureType == STRUCTURE_WALL ||
+                    s.structureType == STRUCTURE_RAMPART
             });
 
             var target = undefined;
@@ -34,7 +35,8 @@ module.exports = {
 
                 // so we have to use this
                 target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
-                    filter: (s) => s.structureType == STRUCTURE_WALL &&
+                    filter: (s) => (s.structureType == STRUCTURE_WALL ||
+                    s.structureType == STRUCTURE_RAMPART) &&
                     s.hits / s.hitsMax < percentage
                 });
 
