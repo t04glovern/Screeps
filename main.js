@@ -8,7 +8,7 @@ var roleWallRepairer = require('role.wallRepairer');
 
 var profiler = require('screeps-profiler');
 
-profiler.enable();
+//profiler.enable();
 module.exports.loop = function () {
 
     profiler.wrap(function() {
