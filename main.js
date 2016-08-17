@@ -83,7 +83,7 @@ module.exports.loop = function () {
             name = Game.spawns.GloverHome.createCustomCreep(energy, 'harvester');
 
             // if spawning failed and we have no harvesters left
-            if (name == ERR_NOT_ENOUGH_ENERGY) {
+            if (name == ERR_NOT_ENOUGH_ENERGY && numberOfHarvesters == 0) {
                 // spawn one with what is available
                 name = Game.spawns.GloverHome.createCustomCreep(
                     Game.spawns.GloverHome.room.energyAvailable, 'harvester');
